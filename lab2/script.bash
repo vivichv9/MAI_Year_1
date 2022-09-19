@@ -2,7 +2,7 @@
 echo "В какой директории вы хотите удалить пустые файлы? Y -  выбрать текущую, N - ввести вручную"
 choice=""
 read choice
-if [ $choice = "Y" ]
+if [ $choice = "Y" ] || [$choice = "y"]
 then
 mydir=$(pwd)
 emptyFiles=$(find $mydir -empty)
@@ -12,7 +12,7 @@ emptyFiles=$(find $mydir -empty)
         else
         echo "Пустые файлы не найдены"
         fi
-elif [ $choice = "N" ]
+elif [ $choice = "N" ] || [ $choice = "n"]
 then
 mydir=""
 read mydir
