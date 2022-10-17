@@ -1,1 +1,4 @@
 # Lab_works
+lab_5 - var 48
+lab_6 - var 25
+lab_7 - var 22
