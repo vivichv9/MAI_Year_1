@@ -17,14 +17,14 @@ int main() {
     for (int i = 0; i < count; i++) {
         scanf("%d%d", &digit1, &digit2);
         sum += max(digit1, digit2);
-        if (max(digit1, digit2) - min(digit1, digit2) % 3 && max(digit1, digit2) - min(digit1, digit2) != 0) {
+        if ((max(digit1, digit2) - min(digit1, digit2)) % 3 != 0) {
             razn = min(max(digit1, digit2) - min(digit1, digit2), razn);
         }
     }
     if (sum % 3 == 0) {
-        printf("%d", sum - razn);
+        printf("%d %d", sum - razn);
     } else {
-        printf("%d", sum);
+        printf("%d %d", sum);
     }
     return 0;
 }
