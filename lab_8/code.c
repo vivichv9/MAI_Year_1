@@ -19,12 +19,13 @@ void test_min() {
     assert(min(x, y) == 0);
 }
 
-
 int main() {
     test_min();
 
     int count, digit1, digit2, sum, razn = 1000000;
+    
     scanf("%d", &count);
+    
     for (int i = 0; i < count; i++) {
         scanf("%d%d", &digit1, &digit2);
         sum += max(digit1, digit2);
