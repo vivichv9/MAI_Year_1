@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
 
-int abs(int a){
+long abs(long a){
     return a < 0 ? a*(-1) : a;
 }
 
-int func(int n){
+long func(long n){
     if (n != 0) {
-        int a = 1, p = 10;
+        long a = 1, p = 10;
         n = abs(n);
         while (n > 0){
             a += p * (n % 10);
@@ -17,8 +18,17 @@ int func(int n){
         a += p;
         return a;
     } else{
-        return 11;
+        return 101;
     }
+}
+
+int check(long a){
+    int count = 0;
+    while (a > 0){
+        a /= 10;
+        count += 1;
+    }
+    return count;
 }
 
 void abs_test(){
@@ -37,18 +47,22 @@ void func_test(){
     assert(func(n) == 11001);
 
     n = 0;
-    assert(func(n) == 11);
+    assert(func(n) == 101);
 
     n = -101;
     assert(abs(n) == -11011);
 }
 
 int main(){
-    int n = 0;
-    scanf("%d", &n);
-    if (n < 0) {
-        printf("%d", func(n)*(-1));
-    } else {
-        printf("%d", func(n));
+    long n = 0;
+    scanf("%ld", &n);
+    if (check(n) <= 8){
+        if (n < 0) {
+            printf("%ld", func(n)*(-1));
+        } else {
+            printf("%ld", func(n));
+        }
+    } else{
+        printf("1%ld1", n);
     }
 }
