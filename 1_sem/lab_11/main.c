@@ -9,9 +9,14 @@ typedef enum {
     state1,
 } state;
 
+int isSpace(char a){
+    if (a == ' ') return 1;
+    return 0;
+}
+
 int isRubbish(char a) {
     asc = (int) a;
-    if (asc < 32) {
+    if (asc < 'a' || asc > 'z') {
         return 1;
     } else {
         return 0;
@@ -20,7 +25,7 @@ int isRubbish(char a) {
 
 int isEnd(char a) {
     asc = (int) a;
-    if (asc + count + 3 > 126) {
+    if (asc + count + 3 > 'z') {
         return asc + count + 3;
     } else {
         return 0;
@@ -33,7 +38,7 @@ char codeCaesar(char a) {
     if (flag == 0) {
         return (char) (asc + count + 3);
     } else {
-        return (char) (31 + (flag - 126));
+        return (char)  ('a' - 1 + (flag - 'z'));
     }
 }
 
@@ -44,12 +49,12 @@ void testIsRubbish() {
 
 void testCodeCaesar() {
     assert(codeCaesar('a') == 'd');
-    assert(codeCaesar('}') == '!');
+    assert(codeCaesar('z') == 'c');
 }
 
 void testIsEnd() {
-    assert(isEnd('}') != 0);
-    assert(isEnd('0') == 0);
+    assert(isEnd('a') == 0);
+    assert(isEnd('z') != 0);
 }
 
 void testAll() {
@@ -74,7 +79,14 @@ int main() {
 
         switch (currentState) {
             case state0:
+
+                if (count == 'z' - 'a' - 3){
+                    count = 0;
+                }
+
                 if (isRubbish(c)) {
+                    count = 0;
+                    printf("%c", ' ');
                     currentState = state0;
                 } else {
                     currentState = state1;
