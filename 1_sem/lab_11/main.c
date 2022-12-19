@@ -16,7 +16,10 @@ int isSpace(char a){
 
 int isRubbish(char a) {
     asc = (int) a;
-    if (asc < 'a' || asc > 'z') {
+
+    if (asc >= 'a' && asc <= 'z') {
+        return 2;
+    } else if (asc >= 'A' && asc <= 'Z') {
         return 1;
     } else {
         return 0;
@@ -25,26 +28,41 @@ int isRubbish(char a) {
 
 int isEnd(char a) {
     asc = (int) a;
-    if (asc + count + 3 > 'z') {
-        return asc + count + 3;
+    int flag = isRubbish(a);
+    if (flag == 2){
+        if (asc + count + 3 > 'z') {
+            return asc + count + 3;
+        } else {
+            return 0;
+        }
     } else {
-        return 0;
+        if (asc + count + 3 > 'Z') {
+            return asc + count + 3;
+        } else {
+            return 0;
+        }
     }
 }
 
 char codeCaesar(char a) {
     asc = (int) a;
     int flag = isEnd(a);
+    int flag1 = isRubbish(a);
     if (flag == 0) {
         return (char) (asc + count + 3);
     } else {
-        return (char)  ('a' - 1 + (flag - 'z'));
+        if (flag1 == 2){
+            return (char)  ('a' - 1 + (flag - 'z'));
+        } else {
+            return (char) ('A' - 1 + (flag - 'Z'));
+        }
     }
 }
 
 void testIsRubbish() {
-    assert(isRubbish('\n') ==  1);
-    assert(isRubbish('a') == 0);
+    assert(isRubbish('\n') ==  0);
+    assert(isRubbish('a') == 2);
+    assert(isRubbish('A') == 1);
 }
 
 void testCodeCaesar() {
@@ -84,9 +102,10 @@ int main() {
                     count = 0;
                 }
 
-                if (isRubbish(c)) {
+                if (isRubbish(c) == 0) {
                     count = 0;
-                    printf("%c", ' ');
+                    if (isSpace(c)) printf("%c", ' ');
+                    else printf("%c", c);
                     currentState = state0;
                 } else {
                     currentState = state1;
