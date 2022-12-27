@@ -1,4 +1,4 @@
-# Laboratory work
+# Laboratory works
 ## Student: `Efimenko Kirill`
 
 ## Group: `M8O-109Б-22`
