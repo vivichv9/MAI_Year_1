@@ -1,7 +1,7 @@
 # Laboratory work
-## ```Student:``` Efimenko Kirill
+## Student: `Efimenko Kirill`
 
-## ```Group:``` M8O-109Б-22
+## Group: `M8O-109Б-22`
 
 | Number of Laboratory work  | Variant | Task text |
 | -------------------------- | ------- | --------- |
